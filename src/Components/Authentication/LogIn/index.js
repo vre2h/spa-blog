@@ -16,8 +16,8 @@ class LogIn extends React.Component {
   render() {
     return (
       <div>
-        <h2>You have Logged In!</h2>
-        <button onClick={this.clickHandler}>Log Out</button>
+        <h2>Are you sure you want to log out</h2>
+        <button onClick={this.clickHandler}>YES!</button>
       </div>
     );
   }
