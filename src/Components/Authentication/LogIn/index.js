@@ -1,6 +1,6 @@
 import React from 'react';
 
-class LogIn extends React.Component {
+class LogOut extends React.Component {
   constructor(props) {
     super(props);
 
@@ -10,17 +10,17 @@ class LogIn extends React.Component {
   clickHandler() {
     const { logInToggle } = this.props;
 
-    logInToggle(false);
+    logInToggle(true);
   }
 
   render() {
     return (
       <div>
-        <h2>Are you sure you want to log out</h2>
-        <button onClick={this.clickHandler}>YES!</button>
+        <h2>You should Log In!</h2>
+        <button onClick={this.clickHandler}>Log In</button>
       </div>
     );
   }
 }
 
-export default LogIn;
+export default LogOut;

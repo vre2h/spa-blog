@@ -7,9 +7,9 @@ class Authentication extends React.Component {
     const { isLoggedIn, logInToggle } = this.props;
 
     return isLoggedIn ? (
-      <LogIn logInToggle={logInToggle} />
-    ) : (
       <LogOut logInToggle={logInToggle} />
+    ) : (
+      <LogIn logInToggle={logInToggle} />
     );
   }
 }
