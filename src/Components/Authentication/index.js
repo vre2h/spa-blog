@@ -1,8 +1,25 @@
 import React from 'react';
 import LogInForm from './LogInForm';
 import LogOutForm from './LogOutForm';
+import { Redirect } from 'react-router-dom';
 
 class Authentication extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      redirectToReferrer: false,
+    };
+
+    this.handleRedirect = this.handleRedirect.bind(this);
+  }
+
+  handleRedirect() {
+    this.setState({
+      redirectToReferrer: true,
+    });
+  }
+
   render() {
     const {
       isLoggedIn,
@@ -11,6 +28,14 @@ class Authentication extends React.Component {
       logOut,
       isLogInFormOpen,
     } = this.props;
+
+    const { from } = this.props.location.state || { from: { pathname: '/' } };
+
+    const { redirectToReferrer } = this.state;
+
+    if (redirectToReferrer || !isLogInFormOpen) {
+      return <Redirect to={from} />;
+    }
 
     return isLoggedIn ? (
       <div>
@@ -26,6 +51,7 @@ class Authentication extends React.Component {
           isLogInFormOpen={isLogInFormOpen}
           logInFormClose={logInFormClose}
           addUserAndLogIn={addUserAndLogIn}
+          addRedirect={this.handleRedirect}
         />
       </div>
     );
