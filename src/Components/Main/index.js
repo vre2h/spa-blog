@@ -15,10 +15,10 @@ class Main extends React.Component {
     this.logInToggle = this.logInToggle.bind(this);
   }
 
-  logInToggle(value) {
-    this.setState({
-      isLoggedIn: value,
-    });
+  logInToggle() {
+    this.setState(({ isLoggedIn }) => ({
+      isLoggedIn: !isLoggedIn,
+    }));
   }
 
   render() {
