@@ -35,7 +35,8 @@ const styles = {
 };
 
 function SimpleAppBar(props) {
-  const { classes } = props;
+  const { classes, isLoggedIn } = props;
+
   return (
     <div className={classes.root}>
       <AppBar position="static" color="primary">
@@ -54,7 +55,11 @@ function SimpleAppBar(props) {
           </Link>
 
           <Link to="/login" className={classes.logInLink}>
-            <MenuItem className={classes['nav-item-font']}>Log In</MenuItem>
+            {isLoggedIn ? (
+              <MenuItem className={classes['nav-item-font']}>Log In</MenuItem>
+            ) : (
+              <MenuItem className={classes['nav-item-font']}>Log Out</MenuItem>
+            )}
           </Link>
         </Toolbar>
       </AppBar>
