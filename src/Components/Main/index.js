@@ -10,24 +10,58 @@ class Main extends React.Component {
 
     this.state = {
       isLoggedIn: false,
+      isLogInFormOpen: false,
+      users: [],
     };
 
-    this.logInToggle = this.logInToggle.bind(this);
+    this.logIn = this.logIn.bind(this);
+    this.logOut = this.logOut.bind(this);
+    this.logInFormOpen = this.logInFormOpen.bind(this);
+    this.logInFormClose = this.logInFormClose.bind(this);
+    this.addUserAndLogIn = this.addUserAndLogIn.bind(this);
   }
 
-  logInToggle() {
+  addUserAndLogIn(newUser) {
+    const { users } = this.state;
+    const newUsers = users.concat(newUser);
+
+    this.setState({
+      users: newUsers,
+    });
+    this.logIn();
+  }
+
+  logIn() {
     this.setState(({ isLoggedIn }) => ({
-      isLoggedIn: !isLoggedIn,
+      isLoggedIn: true,
     }));
   }
 
+  logOut() {
+    this.setState(({ isLoggedIn }) => ({
+      isLoggedIn: false,
+    }));
+  }
+
+  logInFormOpen() {
+    this.setState({
+      isLogInFormOpen: true,
+    });
+  }
+
+  logInFormClose() {
+    this.setState({
+      isLogInFormOpen: false,
+    });
+  }
+
   render() {
-    const { isLoggedIn } = this.state;
+    const { isLoggedIn, isLogInFormOpen } = this.state;
 
     return (
       <Router>
         <ScrollToTop>
-          <MainNav isLoggedIn={isLoggedIn} />
+          <MainNav isLoggedIn={isLoggedIn} logInFormOpen={this.logInFormOpen} />
 
           <Switch>
             <Route exact path="/" render={() => <h1>Blogs</h1>} />
@@ -36,7 +70,11 @@ class Main extends React.Component {
               render={() => (
                 <Authentication
                   isLoggedIn={isLoggedIn}
-                  logInToggle={this.logInToggle}
+                  addUserAndLogIn={this.addUserAndLogIn}
+                  logOut={this.logOut}
+                  isLogInFormOpen={isLogInFormOpen}
+                  logInFormClose={this.logInFormClose}
+                  addUser={this.addUser}
                 />
               )}
             />
