@@ -19,38 +19,18 @@ class LogOutForm extends React.Component {
   constructor(props) {
     super(props);
 
-    this.state = {
-      name: '',
-      password: '',
-    };
-
-    this.handleName = this.handleName.bind(this);
-    this.handlePswd = this.handlePswd.bind(this);
-    this.handleLogIn = this.handleLogIn.bind(this);
+    this.handleLogOut = this.handleLogOut.bind(this);
   }
 
-  handlePswd(event) {
-    this.setState({
-      password: event.target.value,
-    });
-  }
+  handleLogOut() {
+    const { logOut, logInFormClose } = this.props;
 
-  handleName(event) {
-    this.setState({
-      name: event.target.value,
-    });
-  }
-
-  handleLogIn() {
-    const { addUserAndLogIn, logInFormClose } = this.props;
-    const { name, password } = this.state;
-
-    addUserAndLogIn({ name, password });
+    logOut();
     logInFormClose();
   }
 
   render() {
-    const { isLogInFormOpen, logInFormClose, logOut } = this.props;
+    const { isLogInFormOpen, logInFormClose } = this.props;
 
     return (
       <Dialog
@@ -66,7 +46,7 @@ class LogOutForm extends React.Component {
           <Button onClick={logInFormClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={logOut} color="primary">
+          <Button onClick={this.handleLogOut} color="primary">
             Log Out
           </Button>
         </DialogActions>
