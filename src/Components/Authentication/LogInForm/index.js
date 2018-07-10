@@ -43,10 +43,11 @@ class LogInForm extends React.Component {
   }
 
   handleLogIn() {
-    const { addUserAndLogIn, logInFormClose } = this.props;
+    const { addUserAndLogIn, logInFormClose, addRedirect } = this.props;
     const { name, password } = this.state;
 
     addUserAndLogIn({ name, password });
+    addRedirect();
     logInFormClose();
   }
 
