@@ -15,44 +15,29 @@ const styles = {
   },
 };
 
-class LogOutForm extends React.Component {
-  constructor(props) {
-    super(props);
+const LogOutForm = props => {
+  const { isLogInFormOpen, closeForm, logOut } = props;
 
-    this.handleLogOut = this.handleLogOut.bind(this);
-  }
-
-  handleLogOut() {
-    const { logOut, logInFormClose } = this.props;
-
-    logOut();
-    logInFormClose();
-  }
-
-  render() {
-    const { isLogInFormOpen, logInFormClose } = this.props;
-
-    return (
-      <Dialog
-        open={isLogInFormOpen}
-        onClose={logInFormClose}
-        aria-labelledby="form-dialog-title"
-      >
-        <DialogTitle id="form-dialog-title">Log Out</DialogTitle>
-        <DialogContent>
-          <DialogContentText>Are you sure about leaving us?</DialogContentText>
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={logInFormClose} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={this.handleLogOut} color="primary">
-            Log Out
-          </Button>
-        </DialogActions>
-      </Dialog>
-    );
-  }
-}
+  return (
+    <Dialog
+      open={isLogInFormOpen}
+      onClose={closeForm}
+      aria-labelledby="form-dialog-title"
+    >
+      <DialogTitle id="form-dialog-title">Log Out</DialogTitle>
+      <DialogContent>
+        <DialogContentText>Are you sure about leaving us?</DialogContentText>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={closeForm} color="primary">
+          Cancel
+        </Button>
+        <Button onClick={logOut} color="primary">
+          Log Out
+        </Button>
+      </DialogActions>
+    </Dialog>
+  );
+};
 
 export default withStyles(styles)(LogOutForm);
