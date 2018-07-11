@@ -3,7 +3,10 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import ScrollToTop from '../../Helpers/Scroll/';
 import MainNav from '../MainNav';
+import CreatePost from '../CreatePost';
 import Authentication from '../Authentication';
+import ProtectedRoute from '../ProtectedRoute';
+
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -79,7 +82,11 @@ class Main extends React.Component {
                 />
               )}
             />
-            <Route path="/blog/create" render={() => <h1>Create Post</h1>} />
+            <ProtectedRoute
+              isLoggedIn={isLoggedIn}
+              path="/blog/create"
+              component={CreatePost}
+            />
           </Switch>
         </ScrollToTop>
       </Router>
