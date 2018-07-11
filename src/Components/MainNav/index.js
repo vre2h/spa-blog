@@ -49,12 +49,15 @@ function SimpleAppBar(props) {
           </Typography>
 
           <Link to="/blog/create">
-            <MenuItem className={classes['nav-item-font']}>
+            <MenuItem
+              onClick={isLoggedIn ? () => {} : logInFormOpen}
+              className={classes['nav-item-font']}
+            >
               Create Post
             </MenuItem>
           </Link>
 
-          <Link to="/login" className={classes.logInLink}>
+          <Link to="/auth" className={classes.logInLink}>
             {isLoggedIn ? (
               <MenuItem
                 className={classes['nav-item-font']}

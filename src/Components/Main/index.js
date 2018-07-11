@@ -69,7 +69,7 @@ class Main extends React.Component {
           <Switch>
             <Route exact path="/" render={() => <h1>Blogs</h1>} />
             <Route
-              path="/login"
+              path="/auth"
               render={props => (
                 <Authentication
                   {...props}
