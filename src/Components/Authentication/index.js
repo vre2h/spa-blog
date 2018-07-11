@@ -35,11 +35,11 @@ class Authentication extends React.Component {
   }
 
   handleLogOut() {
-    const { logOut, logInFormClose } = this.props;
+    const { logOut } = this.props;
 
     logOut();
     this.handleRedirect();
-    logInFormClose();
+    this.closeFormAndReDirerect();
   }
 
   static userId = 0;
@@ -57,7 +57,7 @@ class Authentication extends React.Component {
   }
 
   sendLogInData() {
-    const { addUserAndLogIn, logInFormClose } = this.props;
+    const { addUserAndLogIn } = this.props;
     const { name, password } = this.state;
     const editName = name.trim();
     const editPassword = password.trim();
@@ -68,7 +68,7 @@ class Authentication extends React.Component {
 
     addUserAndLogIn({ id: (Authentication.userId += 1), name, password });
     this.handleRedirect();
-    logInFormClose();
+    this.closeFormAndReDirerect();
   }
 
   render() {
