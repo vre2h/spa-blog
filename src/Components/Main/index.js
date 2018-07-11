@@ -14,7 +14,8 @@ class Main extends React.Component {
     this.state = {
       isLoggedIn: false,
       isLogInFormOpen: false,
-      users: [],
+      users: [{ id: 0, name: 'admin', password: 'admin' }],
+      posts: [],
     };
 
     this.logIn = this.logIn.bind(this);
@@ -22,6 +23,7 @@ class Main extends React.Component {
     this.logInFormOpen = this.logInFormOpen.bind(this);
     this.logInFormClose = this.logInFormClose.bind(this);
     this.addUserAndLogIn = this.addUserAndLogIn.bind(this);
+    this.addPost = this.addPost.bind(this);
   }
 
   addUserAndLogIn(newUser) {
@@ -32,6 +34,15 @@ class Main extends React.Component {
       users: newUsers,
     });
     this.logIn();
+  }
+
+  addPost(newPost) {
+    const { posts } = this.state;
+    const newPosts = posts.concat(newPost);
+
+    this.setState({
+      posts: newPosts,
+    });
   }
 
   logIn() {
@@ -60,6 +71,8 @@ class Main extends React.Component {
 
   render() {
     const { isLoggedIn, isLogInFormOpen } = this.state;
+    const { users } = this.state;
+    const { id: userId } = users[users.length - 1];
 
     return (
       <Router>
@@ -86,6 +99,8 @@ class Main extends React.Component {
               isLoggedIn={isLoggedIn}
               path="/blog/create"
               component={CreatePost}
+              addPost={this.addPost}
+              userId={userId}
             />
           </Switch>
         </ScrollToTop>
