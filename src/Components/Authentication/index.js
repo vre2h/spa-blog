@@ -29,12 +29,14 @@ class Authentication extends React.Component {
       isLogInFormOpen,
     } = this.props;
 
-    const { from } = this.props.location.state || { from: { pathname: '/' } };
+    const { referrer } = this.props.location.state || {
+      referrer: { pathname: '/' },
+    };
 
     const { redirectToReferrer } = this.state;
 
     if (redirectToReferrer || !isLogInFormOpen) {
-      return <Redirect to={from} />;
+      return <Redirect to={referrer} />;
     }
 
     return isLoggedIn ? (
