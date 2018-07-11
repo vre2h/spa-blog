@@ -9,9 +9,16 @@ class Authentication extends React.Component {
 
     this.state = {
       redirectToReferrer: false,
+      name: '',
+      password: '',
     };
 
+    this.handleLogOut = this.handleLogOut.bind(this);
+    this.sendLogInData = this.sendLogInData.bind(this);
+    this.handleName = this.handleName.bind(this);
+    this.handlePswd = this.handlePswd.bind(this);
     this.handleRedirect = this.handleRedirect.bind(this);
+    this.closeFormAndReDirerect = this.closeFormAndReDirerect.bind(this);
   }
 
   handleRedirect() {
@@ -20,22 +27,54 @@ class Authentication extends React.Component {
     });
   }
 
+  closeFormAndReDirerect() {
+    const { logInFormClose } = this.props;
+
+    this.handleRedirect();
+    logInFormClose();
+  }
+
+  handleLogOut() {
+    const { logOut, logInFormClose } = this.props;
+
+    logOut();
+    this.handleRedirect();
+    logInFormClose();
+  }
+
+  static userId = 0;
+
+  handlePswd(event) {
+    this.setState({
+      password: event.target.value,
+    });
+  }
+
+  handleName(event) {
+    this.setState({
+      name: event.target.value,
+    });
+  }
+
+  sendLogInData() {
+    const { addUserAndLogIn, logInFormClose } = this.props;
+    const { name, password } = this.state;
+
+    addUserAndLogIn({ id: (LogInForm.userId += 1), name, password });
+    this.handleRedirect();
+    logInFormClose();
+  }
+
   render() {
-    const {
-      isLoggedIn,
-      logInFormClose,
-      addUserAndLogIn,
-      logOut,
-      isLogInFormOpen,
-    } = this.props;
+    const { isLoggedIn, logInFormClose, isLogInFormOpen } = this.props;
 
     const { referrer } = this.props.location.state || {
       referrer: { pathname: '/' },
     };
 
-    const { redirectToReferrer } = this.state;
+    const { redirectToReferrer, name, pswd } = this.state;
 
-    if (redirectToReferrer || !isLogInFormOpen) {
+    if (redirectToReferrer) {
       return <Redirect to={referrer} />;
     }
 
@@ -44,7 +83,8 @@ class Authentication extends React.Component {
         <LogOutForm
           isLogInFormOpen={isLogInFormOpen}
           logInFormClose={logInFormClose}
-          logOut={logOut}
+          closeForm={this.closeFormAndReDirerect}
+          logOut={this.handleLogOut}
         />
       </div>
     ) : (
@@ -52,8 +92,11 @@ class Authentication extends React.Component {
         <LogInForm
           isLogInFormOpen={isLogInFormOpen}
           logInFormClose={logInFormClose}
-          addUserAndLogIn={addUserAndLogIn}
-          addRedirect={this.handleRedirect}
+          sendLogInData={this.sendLogInData}
+          handleName={this.handleName}
+          handlePswd={this.handlePswd}
+          name={name}
+          pswd={pswd}
         />
       </div>
     );
