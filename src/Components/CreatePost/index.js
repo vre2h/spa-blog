@@ -1,4 +1,5 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
 
 import { withStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -37,6 +38,13 @@ class CreatePost extends React.Component {
     this.handlePost = this.handlePost.bind(this);
     this.handleTitle = this.handleTitle.bind(this);
     this.handleContent = this.handleContent.bind(this);
+    this.handleRedirect = this.handleRedirect.bind(this);
+  }
+
+  handleRedirect() {
+    this.setState({
+      redirectToReferrer: true,
+    });
   }
 
   static postId = 0;
@@ -59,11 +67,21 @@ class CreatePost extends React.Component {
 
     addPost({ userId, title, content, id: (CreatePost.postId += 1) });
     this.setState({ id: '', title: '', content: '', userId: '' });
+    this.handleRedirect();
   }
 
   render() {
     const { classes } = this.props;
     const { title, content } = this.state;
+    const { redirectToReferrer } = this.state;
+    const { referrer } = this.props.location.state || {
+      referrer: { pathname: '/' },
+    };
+
+    if (redirectToReferrer) {
+      return <Redirect to={referrer} />;
+    }
+
     return (
       <Grid container justify="center">
         <Grid item xs={12} sm={9}>
