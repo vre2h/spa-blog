@@ -59,6 +59,12 @@ class Authentication extends React.Component {
   sendLogInData() {
     const { addUserAndLogIn, logInFormClose } = this.props;
     const { name, password } = this.state;
+    const editName = name.trim();
+    const editPassword = password.trim();
+
+    if (editName === '' || editPassword === '') {
+      return;
+    }
 
     addUserAndLogIn({ id: (Authentication.userId += 1), name, password });
     this.handleRedirect();
@@ -71,7 +77,7 @@ class Authentication extends React.Component {
       referrer: { pathname: '/' },
     };
 
-    const { redirectToReferrer, name, pswd } = this.state;
+    const { redirectToReferrer, name, password } = this.state;
 
     if (redirectToReferrer) {
       return <Redirect to={referrer} />;
@@ -97,7 +103,7 @@ class Authentication extends React.Component {
           handleName={this.handleName}
           handlePswd={this.handlePswd}
           name={name}
-          pswd={pswd}
+          pswd={password}
           closeForm={this.closeFormAndReDirerect}
         />
       </div>

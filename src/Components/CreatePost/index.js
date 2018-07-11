@@ -74,6 +74,7 @@ class CreatePost extends React.Component {
             <Grid container>
               <Grid item xs={12} sm={9}>
                 <TextField
+                  error={title.trim() === '' ? true : false}
                   fullWidth
                   required
                   label="Title"
@@ -86,6 +87,7 @@ class CreatePost extends React.Component {
               </Grid>
             </Grid>
             <TextField
+              error={content.trim() === '' ? true : false}
               label="Content"
               margin="normal"
               value={content}
@@ -104,6 +106,9 @@ class CreatePost extends React.Component {
                 aria-label="add"
                 className={classes.button}
                 onClick={this.handlePost}
+                disabled={
+                  title.trim() === '' || content.trim() === '' ? true : false
+                }
               >
                 <DoneIcon />
               </Button>

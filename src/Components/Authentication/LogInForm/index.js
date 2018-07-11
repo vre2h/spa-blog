@@ -41,15 +41,19 @@ const LogInForm = props => {
         </DialogContentText>
         <form className={classes.root}>
           <TextField
+            required
+            error={name.trim() === '' ? true : false}
             id="name"
-            label="Name"
+            label={name.trim() === '' ? 'Fill the field' : 'Name'}
             margin="normal"
             value={name}
             onChange={handleName}
           />
           <TextField
+            required
+            error={pswd.trim() === '' ? true : false}
             id="password-input"
-            label="Password"
+            label={pswd.trim() === '' ? 'Fill the field' : 'Name'}
             type="password"
             margin="normal"
             value={pswd}
@@ -61,7 +65,11 @@ const LogInForm = props => {
         <Button onClick={closeForm} color="primary">
           Cancel
         </Button>
-        <Button onClick={sendLogInData} color="primary">
+        <Button
+          disabled={pswd.trim() === '' || name.trim() === '' ? true : false}
+          onClick={sendLogInData}
+          color="primary"
+        >
           logIn
         </Button>
       </DialogActions>
