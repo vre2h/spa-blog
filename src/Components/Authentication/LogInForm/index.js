@@ -30,6 +30,8 @@ class LogInForm extends React.Component {
     this.handleLogIn = this.handleLogIn.bind(this);
   }
 
+  static userId = 0;
+
   handlePswd(event) {
     this.setState({
       password: event.target.value,
@@ -46,7 +48,7 @@ class LogInForm extends React.Component {
     const { addUserAndLogIn, logInFormClose, addRedirect } = this.props;
     const { name, password } = this.state;
 
-    addUserAndLogIn({ name, password });
+    addUserAndLogIn({ id: (LogInForm.userId += 1), name, password });
     addRedirect();
     logInFormClose();
   }
