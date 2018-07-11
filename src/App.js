@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import Main from './Components/Main';
 
@@ -10,7 +11,9 @@ class App extends Component {
     return (
       <React.Fragment>
         <CssBaseline />
-        <Main />
+        <Router>
+          <Main />
+        </Router>
       </React.Fragment>
     );
   }
