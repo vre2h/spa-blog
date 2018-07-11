@@ -6,7 +6,7 @@ import MainNav from '../MainNav';
 import CreatePost from '../CreatePost';
 import Authentication from '../Authentication';
 import ProtectedRoute from '../ProtectedRoute';
-
+import delRepeated from './delRepeated';
 class Main extends React.Component {
   constructor(props) {
     super(props);
@@ -28,7 +28,9 @@ class Main extends React.Component {
 
   addUserAndLogIn(newUser) {
     const { users } = this.state;
-    const newUsers = users.concat(newUser);
+    const filtered = delRepeated(newUser, users);
+
+    const newUsers = filtered.concat(newUser);
 
     this.setState({
       users: newUsers,
