@@ -14,7 +14,7 @@ const styles = {
   },
   logo: {
     color: 'inherit',
-    marginRight: '50px',
+    marginRight: '30px',
     fontSize: '26px',
     textDecoration: 'none',
   },
