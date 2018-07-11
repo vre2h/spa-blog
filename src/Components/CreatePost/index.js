@@ -24,8 +24,46 @@ const styles = {
 };
 
 class CreatePost extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      title: '',
+      id: '',
+      content: '',
+      userId: '',
+    };
+
+    this.handlePost = this.handlePost.bind(this);
+    this.handleTitle = this.handleTitle.bind(this);
+    this.handleContent = this.handleContent.bind(this);
+  }
+
+  static postId = 0;
+
+  handleTitle(event) {
+    this.setState({
+      title: event.target.value,
+    });
+  }
+
+  handleContent(event) {
+    this.setState({
+      content: event.target.value,
+    });
+  }
+
+  handlePost() {
+    const { addPost, userId } = this.props;
+    const { title, content } = this.state;
+
+    addPost({ userId, title, content, id: (CreatePost.postId += 1) });
+    this.setState({ id: '', title: '', content: '', userId: '' });
+  }
+
   render() {
     const { classes } = this.props;
+    const { title, content } = this.state;
     return (
       <Grid container justify="center">
         <Grid item xs={12} sm={9}>
@@ -39,22 +77,25 @@ class CreatePost extends React.Component {
                   fullWidth
                   required
                   label="Title"
-                  defaultValue=""
+                  value={title}
                   className={classes.textField}
                   margin="normal"
                   placeholder="..."
+                  onChange={this.handleTitle}
                 />
               </Grid>
             </Grid>
             <TextField
               label="Content"
               margin="normal"
+              value={content}
               required
               fullWidth
               multiline
               rows={10}
               rowsMax={10}
               placeholder="Write your post..."
+              onChange={this.handleContent}
             />
             <Grid container direction="row-reverse">
               <Button
@@ -62,6 +103,7 @@ class CreatePost extends React.Component {
                 color="primary"
                 aria-label="add"
                 className={classes.button}
+                onClick={this.handlePost}
               >
                 <DoneIcon />
               </Button>
