@@ -5,14 +5,14 @@ const ProtectedRoute = ({
   component: Component,
   isLoggedIn,
   addPost,
-  userId,
+  user,
   ...rest
 }) => (
   <Route
     {...rest}
     render={props =>
       isLoggedIn ? (
-        <Component {...props} addPost={addPost} userId={userId} />
+        <Component {...props} addPost={addPost} user={user} />
       ) : (
         <Redirect
           to={{
