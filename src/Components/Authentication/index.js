@@ -67,7 +67,6 @@ class Authentication extends React.Component {
 
   render() {
     const { isLoggedIn, logInFormClose, isLogInFormOpen } = this.props;
-
     const { referrer } = this.props.location.state || {
       referrer: { pathname: '/' },
     };
@@ -88,7 +87,9 @@ class Authentication extends React.Component {
         />
       </div>
     ) : (
-      <div>
+      <div style={{ textAlign: 'center' }}>
+        <h2>You should log in to access data!</h2>
+        <p>Please, press the button at the top right corner and log in.</p>
         <LogInForm
           isLogInFormOpen={isLogInFormOpen}
           logInFormClose={logInFormClose}
@@ -97,6 +98,7 @@ class Authentication extends React.Component {
           handlePswd={this.handlePswd}
           name={name}
           pswd={pswd}
+          closeForm={this.closeFormAndReDirerect}
         />
       </div>
     );
