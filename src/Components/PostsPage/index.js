@@ -5,7 +5,7 @@ import SinglePost from '../SinglePost';
 
 class Posts extends React.Component {
   render() {
-    const { posts } = this.props;
+    const { posts, users } = this.props;
 
     return (
       <Grid container justify="center">
@@ -17,6 +17,8 @@ class Posts extends React.Component {
               content={content}
               date={date}
               id={id}
+              users={users}
+              isPostPage={false}
             />
           </Grid>
         ))}
