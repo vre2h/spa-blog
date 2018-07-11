@@ -6,7 +6,7 @@ import MainNav from '../MainNav';
 import CreatePost from '../CreatePost';
 import Authentication from '../Authentication';
 import ProtectedRoute from '../ProtectedRoute';
-import delRepeated from './delRepeated';
+import delRepeated from './DelRepeated';
 class Main extends React.Component {
   constructor(props) {
     super(props);
