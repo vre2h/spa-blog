@@ -62,11 +62,11 @@ class CreatePost extends React.Component {
   }
 
   handlePost() {
-    const { addPost, userId } = this.props;
+    const { addPost, user } = this.props;
     const { title, content } = this.state;
 
     addPost({
-      userId,
+      userId: user.id,
       title,
       content,
       id: (CreatePost.postId += 1),
