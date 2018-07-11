@@ -65,7 +65,13 @@ class CreatePost extends React.Component {
     const { addPost, userId } = this.props;
     const { title, content } = this.state;
 
-    addPost({ userId, title, content, id: (CreatePost.postId += 1) });
+    addPost({
+      userId,
+      title,
+      content,
+      id: (CreatePost.postId += 1),
+      date: ('' + new Date()).substr(4, 11),
+    });
     this.setState({ id: '', title: '', content: '', userId: '' });
     this.handleRedirect();
   }
