@@ -60,7 +60,7 @@ class Authentication extends React.Component {
     const { addUserAndLogIn, logInFormClose } = this.props;
     const { name, password } = this.state;
 
-    addUserAndLogIn({ id: (LogInForm.userId += 1), name, password });
+    addUserAndLogIn({ id: (Authentication.userId += 1), name, password });
     this.handleRedirect();
     logInFormClose();
   }
