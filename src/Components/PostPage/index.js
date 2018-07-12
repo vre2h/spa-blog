@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import SinglePost from '../SinglePost';
+import SinglePost from '../CardBox';
 import { Redirect } from 'react-router-dom';
 class PostPage extends React.Component {
   render() {

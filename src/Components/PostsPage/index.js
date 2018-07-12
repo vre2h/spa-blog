@@ -1,7 +1,7 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import SinglePost from '../SinglePost';
+import SinglePost from '../CardBox';
 
 class Posts extends React.Component {
   render() {
