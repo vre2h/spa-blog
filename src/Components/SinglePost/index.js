@@ -30,6 +30,12 @@ const styles = theme => ({
   button: {
     marginLeft: 'auto',
   },
+  'done-button': {
+    marginLeft: '20px',
+  },
+  'delete-button': {
+    marginLeft: '20px',
+  },
 });
 
 class SinglePost extends React.Component {
@@ -85,16 +91,45 @@ class SinglePost extends React.Component {
                 200
               )}...`}</Typography>
             </CardContent>
-            <Button
-              className={classes.button}
-              size="large"
-              color="secondary"
-              component={Link}
-              to={`/post/${id}`}
-            >
-              Learn More
-            </Button>
+            {isPostPage ? (
+              ''
+            ) : (
+              <Button
+                className={classes.button}
+                size="large"
+                color="secondary"
+                component={Link}
+                to={`/post/${id}`}
+              >
+                Learn More
+              </Button>
+            )}
           </Grid>
+          {isPostPage ? (
+            <Grid container direction="row-reverse">
+              <Button
+                variant="fab"
+                color="primary"
+                aria-label="add"
+                className={classes['done-button']}
+                onClick={this.handlePost}
+                disabled={
+                  title.trim() === '' || content.trim() === '' ? true : false
+                }
+              >
+                <DoneIcon />
+              </Button>
+              <Button
+                variant="fab"
+                aria-label="delete"
+                className={classes['delete-button']}
+              >
+                <DeleteIcon />
+              </Button>
+            </Grid>
+          ) : (
+            ''
+          )}
         </Card>
       </div>
     );
