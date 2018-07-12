@@ -40,7 +40,17 @@ class SinglePost extends React.Component {
   }
 
   render() {
-    const { title, content, date, id, userId, users, isPostPage } = this.props;
+    const {
+      title,
+      content,
+      date,
+      id,
+      userId,
+      users,
+      isPostPage,
+      handleEditPost,
+      handleDeletePost,
+    } = this.props;
 
     const userName = this.findUserById(userId, users).name[0].toUpperCase();
 
@@ -53,6 +63,20 @@ class SinglePost extends React.Component {
             date={date}
             id={id}
             userName={userName}
+            handleEditPost={handleEditPost.bind(this, {
+              title,
+              content,
+              id,
+              date,
+              userId,
+            })}
+            handleDeletePost={handleDeletePost.bind(this, {
+              title,
+              content,
+              id,
+              date,
+              userId,
+            })}
           />
         ) : (
           <NoneditablePost
