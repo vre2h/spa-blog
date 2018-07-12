@@ -7,7 +7,7 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
 import Button from '@material-ui/core/Button';
-import { Grid } from '@material-ui/core';
+import { Grid, TextField } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
 import DoneIcon from '@material-ui/icons/Done';
@@ -37,8 +37,51 @@ const styles = theme => ({
 });
 
 class EditablePost extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isEdit: false,
+      content: this.props.content,
+    };
+
+    this.editToggle = this.editToggle.bind(this);
+    this.handleChange = this.handleChange.bind(this);
+    this.sendNewPost = this.sendNewPost.bind(this);
+    this.handleDelete = this.handleDelete.bind(this);
+  }
+
+  handleChange(event) {
+    this.setState({
+      content: event.target.value,
+    });
+  }
+
+  handleDelete() {
+    const { handleDeletePost } = this.props;
+    handleDeletePost();
+  }
+
+  sendNewPost() {
+    const { handleEditPost } = this.props;
+    const { content } = this.state;
+
+    this.setState({
+      isEdit: false,
+    });
+
+    handleEditPost(content);
+  }
+
+  editToggle() {
+    this.setState(({ isEdit }) => ({
+      isEdit: !isEdit,
+    }));
+  }
+
   render() {
-    const { classes, title, content, date, userName } = this.props;
+    const { classes, title, date, userName } = this.props;
+    const { isEdit, content } = this.state;
     return (
       <div>
         <h1>Page of {title}</h1>
@@ -51,7 +94,7 @@ class EditablePost extends React.Component {
                 </Avatar>
               }
               action={
-                <IconButton>
+                <IconButton onClick={this.editToggle}>
                   <EditIcon />
                 </IconButton>
               }
@@ -59,10 +102,19 @@ class EditablePost extends React.Component {
               subheader={date}
             />
             <CardContent>
-              <Typography component="p">{`${content.slice(
-                0,
-                200
-              )}...`}</Typography>
+              {isEdit ? (
+                <TextField
+                  label="Post"
+                  multiline
+                  rows={5}
+                  value={content}
+                  margin="normal"
+                  fullWidth
+                  onChange={this.handleChange}
+                />
+              ) : (
+                <Typography component="p">{`${content}`}</Typography>
+              )}
             </CardContent>
           </Grid>
           <Grid container direction="row-reverse">
@@ -71,10 +123,10 @@ class EditablePost extends React.Component {
               color="primary"
               aria-label="add"
               className={classes['done-button']}
-              onClick={this.handlePost}
               disabled={
                 title.trim() === '' || content.trim() === '' ? true : false
               }
+              onClick={this.sendNewPost}
             >
               <DoneIcon />
             </Button>
@@ -82,6 +134,7 @@ class EditablePost extends React.Component {
               variant="fab"
               aria-label="delete"
               className={classes['delete-button']}
+              onClick={this.handleDelete}
             >
               <DeleteIcon />
             </Button>
