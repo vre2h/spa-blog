@@ -17,7 +17,36 @@ class Main extends React.Component {
     this.state = {
       isLoggedIn: false,
       isLogInFormOpen: false,
-      users: [{ id: 0, name: 'admin', password: 'admin' }],
+      users: [
+        { id: 0, name: 'admin', password: 'admin' },
+        { id: 1, name: 'vrezh', password: 'admin' },
+      ],
+      comments: [
+        {
+          id: 1,
+          userId: 0,
+          postId: 1000,
+          title: 'fda',
+          content: 'faaa',
+          date: '2000',
+        },
+        {
+          id: 2,
+          userId: 1,
+          postId: 10001,
+          title: 'Hastat',
+          content: 'Duq dra antash demq teseleq',
+          date: '2002',
+        },
+        {
+          id: 3,
+          userId: 0,
+          postId: 10001,
+          title: '100%',
+          content: 'Eti qcox tipa',
+          date: '2002',
+        },
+      ],
       posts: [
         {
           content: 'fdasfad',
@@ -25,6 +54,13 @@ class Main extends React.Component {
           userId: 0,
           title: 'fas',
           date: '2018',
+        },
+        {
+          content: 'Hovon mard Chi',
+          id: 10001,
+          userId: 1,
+          title: 'Shun',
+          date: '2002',
         },
       ],
     };
@@ -37,6 +73,33 @@ class Main extends React.Component {
     this.addPost = this.addPost.bind(this);
     this.handleEditPost = this.handleEditPost.bind(this);
     this.handleDeletePost = this.handleDeletePost.bind(this);
+    this.handleEditComment = this.handleEditComment.bind(this);
+    this.handleDeleteComment = this.handleDeleteComment.bind(this);
+  }
+
+  handleEditComment(comment, content) {
+    const { comments } = this.state;
+    const newComments = comments.reduce((acc, elem) => {
+      if (elem.id === comment.id) {
+        return [...acc, { ...elem, content }];
+      }
+
+      return [...acc, elem];
+    }, []);
+
+    this.setState({
+      comments: newComments,
+    });
+  }
+
+  handleDeleteComment(comment) {
+    const { comments } = this.state;
+
+    const newComments = comments.filter(item => comment.id !== item.id);
+
+    this.setState({
+      comments: newComments,
+    });
   }
 
   handleEditPost(post, content) {
@@ -110,10 +173,8 @@ class Main extends React.Component {
   }
 
   render() {
-    const { isLoggedIn, isLogInFormOpen, posts } = this.state;
-    const { users } = this.state;
+    const { isLoggedIn, isLogInFormOpen, posts, comments, users } = this.state;
     const user = users[users.length - 1];
-
     return (
       <Router>
         <ScrollToTop>
@@ -157,6 +218,9 @@ class Main extends React.Component {
                   users={users}
                   handleEditPost={this.handleEditPost}
                   handleDeletePost={this.handleDeletePost}
+                  handleEditComment={this.handleEditComment}
+                  handleDeleteComment={this.handleDeleteComment}
+                  comments={comments}
                 />
               )}
             />
