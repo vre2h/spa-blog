@@ -1,11 +1,16 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
 
-import SingleComment from '../CardBox';
+import SingleComment from '../SingleComment';
 
 class Comments extends React.Component {
   render() {
-    const { comments, users } = this.props;
+    const {
+      comments,
+      users,
+      handleEditComment,
+      handleDeleteComment,
+    } = this.props;
 
     return (
       <Grid container justify="center">
@@ -18,7 +23,23 @@ class Comments extends React.Component {
               date={date}
               id={id}
               users={users}
-              isPostPage={true}
+              postId={postId}
+              handleEditComment={handleEditComment.bind(this, {
+                title,
+                content,
+                id,
+                date,
+                userId,
+                postId,
+              })}
+              handleDeleteComment={handleDeleteComment.bind(this, {
+                title,
+                content,
+                id,
+                date,
+                userId,
+                postId,
+              })}
             />
           </Grid>
         ))}
