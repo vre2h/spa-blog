@@ -17,52 +17,9 @@ class Main extends React.Component {
     this.state = {
       isLoggedIn: false,
       isLogInFormOpen: false,
-      users: [
-        { id: 0, name: 'admin', password: 'admin' },
-        { id: 1, name: 'vrezh', password: 'admin' },
-      ],
-      comments: [
-        {
-          id: 1,
-          userId: 0,
-          postId: 1000,
-          title: 'fda',
-          content: 'faaa',
-          date: '2000',
-        },
-        {
-          id: 2,
-          userId: 1,
-          postId: 10001,
-          title: 'Hastat',
-          content: 'Duq dra antash demq teseleq',
-          date: '2002',
-        },
-        {
-          id: 3,
-          userId: 0,
-          postId: 10001,
-          title: '100%',
-          content: 'Eti qcox tipa',
-          date: '2002',
-        },
-      ],
-      posts: [
-        {
-          content: 'fdasfad',
-          id: 1000,
-          userId: 0,
-          title: 'fas',
-          date: '2018',
-        },
-        {
-          content: 'Hovon mard Chi',
-          id: 10001,
-          userId: 1,
-          title: 'Shun',
-          date: '2002',
-        },
-      ],
+      users: [],
+      comments: [],
+      posts: [],
     };
 
     this.logIn = this.logIn.bind(this);
@@ -219,22 +176,19 @@ class Main extends React.Component {
               addPost={this.addPost}
               user={user}
             />
-            <Route
+            <ProtectedRoute
+              isLoggedIn={isLoggedIn}
               path={`/post/:postId`}
-              render={({ match }) => (
-                <PostPage
-                  postId={match.params.postId}
-                  posts={posts}
-                  users={users}
-                  handleEditPost={this.handleEditPost}
-                  handleDeletePost={this.handleDeletePost}
-                  handleEditComment={this.handleEditComment}
-                  handleDeleteComment={this.handleDeleteComment}
-                  comments={comments}
-                  addComment={this.addComment}
-                  user={user}
-                />
-              )}
+              component={PostPage}
+              posts={posts}
+              users={users}
+              handleEditPost={this.handleEditPost}
+              handleDeletePost={this.handleDeletePost}
+              handleEditComment={this.handleEditComment}
+              handleDeleteComment={this.handleDeleteComment}
+              comments={comments}
+              addComment={this.addComment}
+              user={user}
             />
           </Switch>
         </ScrollToTop>
