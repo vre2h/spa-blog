@@ -14,12 +14,16 @@ class Main extends React.Component {
   constructor(props) {
     super(props);
 
+    const users = JSON.parse(localStorage.getItem('users'));
+    const comments = JSON.parse(localStorage.getItem('comments'));
+    const posts = JSON.parse(localStorage.getItem('posts'));
+
     this.state = {
-      isLoggedIn: false,
+      isLoggedIn: users ? true : false,
       isLogInFormOpen: false,
-      users: [],
-      comments: [],
-      posts: [],
+      users: users || [],
+      comments: comments || [],
+      posts: posts || [],
     };
 
     this.logIn = this.logIn.bind(this);
@@ -45,6 +49,8 @@ class Main extends React.Component {
       return [...acc, elem];
     }, []);
 
+    localStorage.setItem('comments', JSON.stringify(newComments));
+
     this.setState({
       comments: newComments,
     });
@@ -55,6 +61,8 @@ class Main extends React.Component {
 
     const newComments = comments.filter(item => comment.id !== item.id);
 
+    localStorage.setItem('comments', JSON.stringify(newComments));
+
     this.setState({
       comments: newComments,
     });
@@ -63,6 +71,8 @@ class Main extends React.Component {
   addComment(newComment) {
     const { comments } = this.state;
     const newComments = [newComment, ...comments];
+
+    localStorage.setItem('comments', JSON.stringify(newComments));
 
     this.setState({
       comments: newComments,
@@ -79,6 +89,8 @@ class Main extends React.Component {
       return [...acc, elem];
     }, []);
 
+    localStorage.setItem('posts', JSON.stringify(newPosts));
+
     this.setState({
       posts: newPosts,
     });
@@ -88,6 +100,8 @@ class Main extends React.Component {
     const { posts } = this.state;
 
     const newPosts = posts.filter(item => post.id !== item.id);
+
+    localStorage.setItem('posts', JSON.stringify(newPosts));
 
     this.setState({
       posts: newPosts,
@@ -100,6 +114,8 @@ class Main extends React.Component {
 
     const newUsers = filtered.concat(newUser);
 
+    localStorage.setItem('users', JSON.stringify(newUsers));
+
     this.setState({
       users: newUsers,
     });
@@ -109,6 +125,8 @@ class Main extends React.Component {
   addPost(newPost) {
     const { posts } = this.state;
     const newPosts = [newPost, ...posts];
+
+    localStorage.setItem('posts', JSON.stringify(newPosts));
 
     this.setState({
       posts: newPosts,
