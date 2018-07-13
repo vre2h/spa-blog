@@ -43,7 +43,11 @@ function SimpleAppBar(props) {
         <Toolbar className={classes.toolbar}>
           <Typography variant="title" color="inherit">
             <Link to="/spa-blog" className={classes.logo}>
-              <HomeIcon className={classes.icon} />
+              {window.innerWidth > 400 ? (
+                <HomeIcon className={classes.icon} />
+              ) : (
+                ''
+              )}
               Blog
             </Link>
           </Typography>
