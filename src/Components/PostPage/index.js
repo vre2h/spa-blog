@@ -4,6 +4,7 @@ import { Redirect } from 'react-router-dom';
 
 import SinglePost from '../SinglePost';
 import Comments from '../Comments';
+import CreateComment from '../CreateComment';
 
 class PostPage extends React.Component {
   render() {
@@ -16,9 +17,13 @@ class PostPage extends React.Component {
       handleDeletePost,
       handleEditComment,
       handleDeleteComment,
+      addComment,
+      user,
     } = this.props;
 
-    const [neededPost] = posts.filter(post => +post.id === +postId);
+    const [neededPost] = posts.filter(post => {
+      return +post.id === +postId;
+    });
 
     if (!neededPost) {
       return <Redirect to="/" />;
@@ -42,6 +47,11 @@ class PostPage extends React.Component {
             handleDeletePost={handleDeletePost}
           />
           <h2>Comments</h2>
+          <CreateComment
+            post={neededPost}
+            addComment={addComment}
+            user={user}
+          />
           <Comments
             comments={neededComments}
             users={users}
