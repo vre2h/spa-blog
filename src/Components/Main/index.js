@@ -18,6 +18,16 @@ class Main extends React.Component {
       isLoggedIn: false,
       isLogInFormOpen: false,
       users: [{ id: 0, name: 'admin', password: 'admin' }],
+      comments: [
+        {
+          id: 0,
+          userId: 0,
+          postId: 1000,
+          title: 'afds',
+          content: 'fasd',
+          date: '2018',
+        },
+      ],
       posts: [
         {
           content: 'fdasfad',
@@ -110,8 +120,7 @@ class Main extends React.Component {
   }
 
   render() {
-    const { isLoggedIn, isLogInFormOpen, posts } = this.state;
-    const { users } = this.state;
+    const { isLoggedIn, isLogInFormOpen, posts, users, comments } = this.state;
     const user = users[users.length - 1];
 
     return (
@@ -157,6 +166,7 @@ class Main extends React.Component {
                   users={users}
                   handleEditPost={this.handleEditPost}
                   handleDeletePost={this.handleDeletePost}
+                  comments={comments}
                 />
               )}
             />

@@ -1,8 +1,9 @@
 import React from 'react';
 import Grid from '@material-ui/core/Grid';
+import { Redirect } from 'react-router-dom';
 
 import SinglePost from '../CardBox';
-import { Redirect } from 'react-router-dom';
+import Comments from '../Comments';
 class PostPage extends React.Component {
   render() {
     const {
@@ -11,6 +12,7 @@ class PostPage extends React.Component {
       users,
       handleEditPost,
       handleDeletePost,
+      comments,
     } = this.props;
 
     const [neededPost] = posts.filter(post => +post.id === +postId);
@@ -20,7 +22,7 @@ class PostPage extends React.Component {
     }
 
     const { userId, title, content, date, id } = neededPost;
-
+    const neededComments = comments.filter(comment => (comment.postId = id));
     return (
       <Grid container justify="center">
         <Grid key={id} item xs={12} sm={9}>
@@ -35,6 +37,7 @@ class PostPage extends React.Component {
             handleEditPost={handleEditPost}
             handleDeletePost={handleDeletePost}
           />
+          <Comments comments={neededComments} users={users} />
         </Grid>
       </Grid>
     );

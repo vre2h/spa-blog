@@ -2,8 +2,8 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { withStyles } from '@material-ui/core/styles';
 import red from '@material-ui/core/colors/red';
-import EditablePost from './EditablePost';
-import NoneditablePost from './NoneditablePost';
+import EditableCardBox from './EditableCardBox';
+import NoneditableCardBox from './NoneditableCardBox';
 
 const styles = theme => ({
   card: {
@@ -57,7 +57,7 @@ class SinglePost extends React.Component {
     return (
       <div>
         {isPostPage ? (
-          <EditablePost
+          <EditableCardBox
             title={title}
             content={content}
             date={date}
@@ -79,7 +79,7 @@ class SinglePost extends React.Component {
             })}
           />
         ) : (
-          <NoneditablePost
+          <NoneditableCardBox
             title={title}
             content={content}
             date={date}
