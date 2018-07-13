@@ -71,6 +71,7 @@ class Main extends React.Component {
     this.logInFormClose = this.logInFormClose.bind(this);
     this.addUserAndLogIn = this.addUserAndLogIn.bind(this);
     this.addPost = this.addPost.bind(this);
+    this.addComment = this.addComment.bind(this);
     this.handleEditPost = this.handleEditPost.bind(this);
     this.handleDeletePost = this.handleDeletePost.bind(this);
     this.handleEditComment = this.handleEditComment.bind(this);
@@ -96,6 +97,15 @@ class Main extends React.Component {
     const { comments } = this.state;
 
     const newComments = comments.filter(item => comment.id !== item.id);
+
+    this.setState({
+      comments: newComments,
+    });
+  }
+
+  addComment(newComment) {
+    const { comments } = this.state;
+    const newComments = [newComment, ...comments];
 
     this.setState({
       comments: newComments,
@@ -141,7 +151,7 @@ class Main extends React.Component {
 
   addPost(newPost) {
     const { posts } = this.state;
-    const newPosts = posts.concat(newPost);
+    const newPosts = [newPost, ...posts];
 
     this.setState({
       posts: newPosts,
@@ -221,6 +231,8 @@ class Main extends React.Component {
                   handleEditComment={this.handleEditComment}
                   handleDeleteComment={this.handleDeleteComment}
                   comments={comments}
+                  addComment={this.addComment}
+                  user={user}
                 />
               )}
             />
