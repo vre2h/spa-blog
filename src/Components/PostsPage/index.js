@@ -11,7 +11,11 @@ class Posts extends React.Component {
       return (
         <Grid container direction="column" alignItems="center" justify="center">
           <h2>There is no post on web-site.</h2>
-          <h1>Log in and be our first story teller.</h1>
+          {users.length === 0 ? (
+            <h1>Log in and be our first story teller.</h1>
+          ) : (
+            <h1>You've logged in, share your story!</h1>
+          )}
         </Grid>
       );
     }
