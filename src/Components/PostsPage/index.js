@@ -9,7 +9,13 @@ class Posts extends React.Component {
 
     if (posts.length === 0) {
       return (
-        <Grid container direction="column" alignItems="center" justify="center">
+        <Grid
+          style={{ margin: '10px' }}
+          container
+          direction="column"
+          alignItems="center"
+          justify="center"
+        >
           <h2>There is no post on web-site.</h2>
           {users.length === 0 ? (
             <h1>Log in and be our first story teller.</h1>
