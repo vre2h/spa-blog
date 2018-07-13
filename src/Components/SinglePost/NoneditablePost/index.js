@@ -61,7 +61,7 @@ class NoneditablePost extends React.Component {
               size="large"
               color="secondary"
               component={Link}
-              to={`/post/${id}`}
+              to={`/spa-blog/post/${id}`}
             >
               Learn More
             </Button>

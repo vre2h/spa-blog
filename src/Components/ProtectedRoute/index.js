@@ -11,7 +11,7 @@ const ProtectedRoute = ({ component: Component, ...rest }) => {
         ) : (
           <Redirect
             to={{
-              pathname: '/auth',
+              pathname: '/spa-blog/auth',
               state: { referrer: props.location },
             }}
           />

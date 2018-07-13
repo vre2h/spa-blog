@@ -26,7 +26,7 @@ class PostPage extends React.Component {
     });
 
     if (!neededPost) {
-      return <Redirect to="/" />;
+      return <Redirect to="/spa-blog" />;
     }
 
     const { userId, title, content, date, id } = neededPost;

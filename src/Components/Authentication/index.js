@@ -74,7 +74,7 @@ class Authentication extends React.Component {
   render() {
     const { isLoggedIn, logInFormClose, isLogInFormOpen } = this.props;
     const { referrer } = this.props.location.state || {
-      referrer: { pathname: '/' },
+      referrer: { pathname: '/spa-blog/' },
     };
 
     const { redirectToReferrer, name, password } = this.state;
