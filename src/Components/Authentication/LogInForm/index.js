@@ -53,7 +53,7 @@ const LogInForm = props => {
             required
             error={pswd.trim() === '' ? true : false}
             id="password-input"
-            label={pswd.trim() === '' ? 'Fill the field' : 'Name'}
+            label={pswd.trim() === '' ? 'Fill the field' : 'Password'}
             type="password"
             margin="normal"
             value={pswd}
