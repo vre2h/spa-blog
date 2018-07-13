@@ -168,13 +168,13 @@ class Main extends React.Component {
           <Switch>
             <Route
               exact
-              path="/"
+              path="/spa-blog"
               component={props => (
                 <Posts {...props} posts={posts} users={users} />
               )}
             />
             <Route
-              path="/auth"
+              path="/spa-blog/auth"
               render={props => (
                 <Authentication
                   {...props}
@@ -189,14 +189,14 @@ class Main extends React.Component {
             />
             <ProtectedRoute
               isLoggedIn={isLoggedIn}
-              path="/blog/create"
+              path="/spa-blog/blog/create"
               component={CreatePost}
               addPost={this.addPost}
               user={user}
             />
             <ProtectedRoute
               isLoggedIn={isLoggedIn}
-              path={`/post/:postId`}
+              path={`/spa-blog/post/:postId`}
               component={PostPage}
               posts={posts}
               users={users}

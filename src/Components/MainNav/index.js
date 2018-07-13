@@ -42,13 +42,13 @@ function SimpleAppBar(props) {
       <AppBar position="static" color="primary">
         <Toolbar className={classes.toolbar}>
           <Typography variant="title" color="inherit">
-            <Link to="/" className={classes.logo}>
+            <Link to="/spa-blog" className={classes.logo}>
               <HomeIcon className={classes.icon} />
               Blog
             </Link>
           </Typography>
 
-          <Link to="/blog/create">
+          <Link to="/spa-blog/blog/create">
             <MenuItem
               onClick={isLoggedIn ? () => {} : logInFormOpen}
               className={classes['nav-item-font']}
@@ -57,7 +57,7 @@ function SimpleAppBar(props) {
             </MenuItem>
           </Link>
 
-          <Link to="/auth" className={classes.logInLink}>
+          <Link to="/spa-blog/auth" className={classes.logInLink}>
             {isLoggedIn ? (
               <MenuItem
                 className={classes['nav-item-font']}
