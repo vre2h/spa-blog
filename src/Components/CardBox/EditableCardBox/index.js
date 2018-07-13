@@ -84,7 +84,7 @@ class EditablePost extends React.Component {
     const { isEdit, content } = this.state;
     return (
       <div>
-        <h1>Page of {title}</h1>
+        <h1>Post</h1>
         <Card className={classes.card}>
           <Grid container direction="column">
             <CardHeader
