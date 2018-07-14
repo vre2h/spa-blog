@@ -6,7 +6,6 @@ import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import red from '@material-ui/core/colors/red';
-import Button from '@material-ui/core/Button';
 import { Grid, TextField } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
 import EditIcon from '@material-ui/icons/Edit';
@@ -123,24 +122,16 @@ class SingleComment extends React.Component {
             </CardContent>
           </Grid>
           <Grid container direction="row-reverse">
-            <Button
-              variant="fab"
-              color="primary"
-              aria-label="add"
-              className={classes['done-button']}
+            <IconButton
               disabled={content.trim() === '' ? true : false}
               onClick={this.sendNewComment}
+              aria-label="Delete"
             >
               <DoneIcon />
-            </Button>
-            <Button
-              variant="fab"
-              aria-label="delete"
-              className={classes['delete-button']}
-              onClick={this.handleDelete}
-            >
+            </IconButton>
+            <IconButton onClick={this.handleDelete} aria-label="Delete">
               <DeleteIcon />
-            </Button>
+            </IconButton>
           </Grid>
         </Card>
       </div>
