@@ -1,6 +1,6 @@
 import React from 'react';
-import LogInForm from './LogInForm';
-import LogOutForm from './LogOutForm';
+import LogIn from './LogIn';
+import LogOut from './LogOut';
 import { Redirect } from 'react-router-dom';
 
 class Authentication extends React.Component {
@@ -13,33 +13,9 @@ class Authentication extends React.Component {
       password: '',
     };
 
-    this.handleLogOut = this.handleLogOut.bind(this);
-    this.sendLogInData = this.sendLogInData.bind(this);
     this.handleName = this.handleName.bind(this);
     this.handlePswd = this.handlePswd.bind(this);
-    this.handleRedirect = this.handleRedirect.bind(this);
-    this.closeFormAndReDirerect = this.closeFormAndReDirerect.bind(this);
-  }
-
-  handleRedirect() {
-    this.setState({
-      redirectToReferrer: true,
-    });
-  }
-
-  closeFormAndReDirerect() {
-    const { logInFormClose } = this.props;
-
-    this.handleRedirect();
-    logInFormClose();
-  }
-
-  handleLogOut() {
-    const { logOut } = this.props;
-
-    logOut();
-    this.handleRedirect();
-    this.closeFormAndReDirerect();
+    this.handleLogIn = this.handleLogIn.bind(this);
   }
 
   static userId = 0;
@@ -56,7 +32,7 @@ class Authentication extends React.Component {
     });
   }
 
-  sendLogInData() {
+  handleLogIn() {
     const { addUserAndLogIn } = this.props;
     const { name, password } = this.state;
     const editName = name.trim();
@@ -66,13 +42,14 @@ class Authentication extends React.Component {
       return;
     }
 
+    this.setState({
+      redirectToReferrer: true,
+    });
     addUserAndLogIn({ id: (Authentication.userId += 1), name, password });
-    this.handleRedirect();
-    this.closeFormAndReDirerect();
   }
 
   render() {
-    const { isLoggedIn, logInFormClose, isLogInFormOpen } = this.props;
+    const { isLoggedIn, logOut } = this.props;
     const { referrer } = this.props.location.state || {
       referrer: { pathname: '/spa-blog/' },
     };
@@ -84,29 +61,15 @@ class Authentication extends React.Component {
     }
 
     return isLoggedIn ? (
-      <div>
-        <LogOutForm
-          isLogInFormOpen={isLogInFormOpen}
-          logInFormClose={logInFormClose}
-          closeForm={this.closeFormAndReDirerect}
-          logOut={this.handleLogOut}
-        />
-      </div>
+      <LogOut logOut={logOut} />
     ) : (
-      <div style={{ textAlign: 'center' }}>
-        <h2>You should log in to access data!</h2>
-        <p>Please, press the button at the top right corner and log in.</p>
-        <LogInForm
-          isLogInFormOpen={isLogInFormOpen}
-          logInFormClose={logInFormClose}
-          sendLogInData={this.sendLogInData}
-          handleName={this.handleName}
-          handlePswd={this.handlePswd}
-          name={name}
-          pswd={password}
-          closeForm={this.closeFormAndReDirerect}
-        />
-      </div>
+      <LogIn
+        name={name}
+        pswd={password}
+        handleName={this.handleName}
+        handlePswd={this.handlePswd}
+        logIn={this.handleLogIn}
+      />
     );
   }
 }
