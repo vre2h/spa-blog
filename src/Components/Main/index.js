@@ -193,15 +193,15 @@ class Main extends React.Component {
               )}
             />
             <ProtectedRoute
-              isLoggedIn={isLoggedIn}
               path="/spa-blog/blog/create"
+              isLoggedIn={isLoggedIn}
               component={CreatePost}
               addPost={this.addPost}
               user={user}
             />
             <ProtectedRoute
-              isLoggedIn={isLoggedIn}
               path={`/spa-blog/post/:postId`}
+              isLoggedIn={isLoggedIn}
               component={PostPage}
               posts={posts}
               users={users}
@@ -209,8 +209,8 @@ class Main extends React.Component {
               handleDeletePost={this.handleDeletePost}
               handleEditComment={this.handleEditComment}
               handleDeleteComment={this.handleDeleteComment}
-              comments={comments}
               addComment={this.addComment}
+              comments={comments}
               user={user}
             />
           </Switch>
