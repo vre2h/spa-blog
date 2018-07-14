@@ -170,7 +170,12 @@ class Main extends React.Component {
               exact
               path="/spa-blog"
               component={props => (
-                <Posts {...props} posts={posts} users={users} />
+                <Posts
+                  {...props}
+                  isLoggedIn={isLoggedIn}
+                  posts={posts}
+                  users={users}
+                />
               )}
             />
             <Route
