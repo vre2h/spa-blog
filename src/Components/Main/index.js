@@ -159,7 +159,7 @@ class Main extends React.Component {
 
   render() {
     const { isLoggedIn, isLogInFormOpen, posts, comments, users } = this.state;
-    const user = users[users.length - 1];
+    const currentUser = users[users.length - 1];
     return (
       <Router>
         <ScrollToTop>
@@ -197,7 +197,7 @@ class Main extends React.Component {
               isLoggedIn={isLoggedIn}
               component={CreatePost}
               addPost={this.addPost}
-              user={user}
+              currentUser={currentUser}
             />
             <ProtectedRoute
               path={`/spa-blog/post/:postId`}
@@ -211,7 +211,7 @@ class Main extends React.Component {
               handleDeleteComment={this.handleDeleteComment}
               addComment={this.addComment}
               comments={comments}
-              user={user}
+              currentUser={currentUser}
             />
           </Switch>
         </ScrollToTop>

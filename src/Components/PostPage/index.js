@@ -18,7 +18,7 @@ class PostPage extends React.Component {
       handleEditComment,
       handleDeleteComment,
       addComment,
-      user,
+      currentUser,
     } = this.props;
 
     const [neededPost] = posts.filter(post => {
@@ -50,7 +50,7 @@ class PostPage extends React.Component {
           <CreateComment
             post={neededPost}
             addComment={addComment}
-            user={user}
+            currentUser={currentUser}
           />
           <Comments
             comments={neededComments}

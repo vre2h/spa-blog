@@ -38,11 +38,11 @@ class CreateComment extends React.Component {
   }
 
   handleComment() {
-    const { addComment, user, post } = this.props;
+    const { addComment, currentUser, post } = this.props;
     const { content } = this.state;
 
     addComment({
-      userId: user.id,
+      userId: currentUser.id,
       postId: post.id,
       content,
       id: (CreateComment.commentId += 1),
