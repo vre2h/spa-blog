@@ -12,7 +12,7 @@ const styles = {
 };
 
 const LogInForm = props => {
-  const { handlePswd, handleName, name, pswd, sendLogInData, classes } = props;
+  const { handlePswd, handleName, name, pswd, logIn, classes } = props;
 
   return (
     <Grid container justify="center">
@@ -37,7 +37,7 @@ const LogInForm = props => {
             onChange={handlePswd}
           />
           <Button
-            onClick={sendLogInData}
+            onClick={logIn}
             variant="contained"
             color="primary"
             className={classes.button}
