@@ -47,7 +47,7 @@ class SinglePost extends React.Component {
       id,
       userId,
       users,
-      isPostPage,
+      isEditable,
       handleEditPost,
       handleDeletePost,
     } = this.props;
@@ -56,7 +56,7 @@ class SinglePost extends React.Component {
 
     return (
       <div>
-        {isPostPage ? (
+        {isEditable ? (
           <EditablePost
             title={title}
             content={content}

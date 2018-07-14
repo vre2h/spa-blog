@@ -40,7 +40,7 @@ class Posts extends React.Component {
               date={date}
               id={id}
               users={users}
-              isPostPage={false}
+              isEditable={false}
             />
           </Grid>
         ))}
