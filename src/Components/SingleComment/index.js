@@ -84,7 +84,7 @@ class SingleComment extends React.Component {
   }
 
   render() {
-    const { title, date, userId, users, classes } = this.props;
+    const { date, userId, users, classes } = this.props;
 
     const userName = this.findUserById(userId, users).name[0].toUpperCase();
     const { isEdit, content } = this.state;
@@ -104,7 +104,6 @@ class SingleComment extends React.Component {
                   <EditIcon />
                 </IconButton>
               }
-              title={title}
               subheader={date}
             />
             <CardContent>
@@ -129,9 +128,7 @@ class SingleComment extends React.Component {
               color="primary"
               aria-label="add"
               className={classes['done-button']}
-              disabled={
-                title.trim() === '' || content.trim() === '' ? true : false
-              }
+              disabled={content.trim() === '' ? true : false}
               onClick={this.sendNewComment}
             >
               <DoneIcon />
