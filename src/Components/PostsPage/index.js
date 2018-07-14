@@ -1,11 +1,13 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
+
 import Grid from '@material-ui/core/Grid';
 
 import SinglePost from '../SinglePost';
 
 class Posts extends React.Component {
   render() {
-    const { posts, users } = this.props;
+    const { posts, users, isLoggedIn } = this.props;
 
     if (posts.length === 0) {
       return (
@@ -17,10 +19,16 @@ class Posts extends React.Component {
           justify="center"
         >
           <h2>There is no post on web-site.</h2>
-          {users.length === 0 ? (
-            <h1>Log in and be our first story teller.</h1>
+          {!isLoggedIn ? (
+            <h1>
+              <Link to="/spa-blog/auth">Log in</Link> and be our first story
+              teller.
+            </h1>
           ) : (
-            <h1>You've logged in, share your story!</h1>
+            <h1>
+              You've logged in,{' '}
+              <Link to="/spa-blog/blog/create">share your story!</Link>
+            </h1>
           )}
         </Grid>
       );
