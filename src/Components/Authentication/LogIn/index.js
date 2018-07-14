@@ -15,7 +15,7 @@ const LogInForm = props => {
   const { handlePswd, handleName, name, pswd, sendLogInData, classes } = props;
 
   return (
-    <Grid container justify="center" alignItems="center">
+    <Grid container justify="center">
       <Grid item xs={6}>
         <h1>Log in</h1>
         <Grid container direction="column">
