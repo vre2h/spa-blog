@@ -10,6 +10,7 @@ class Comments extends React.Component {
       users,
       handleEditComment,
       handleDeleteComment,
+      currentUser,
     } = this.props;
 
     return (
@@ -24,6 +25,7 @@ class Comments extends React.Component {
               id={id}
               users={users}
               postId={postId}
+              currentUser={currentUser}
               handleEditComment={handleEditComment.bind(this, {
                 title,
                 content,

@@ -84,9 +84,9 @@ class SingleComment extends React.Component {
   }
 
   render() {
-    const { date, userId, users, classes } = this.props;
+    const { date, userId, users, classes, currentUser } = this.props;
 
-    const userName = this.findUserById(userId, users).name;
+    const author = this.findUserById(userId, users);
     const { isEdit, content } = this.state;
 
     return (
@@ -96,7 +96,7 @@ class SingleComment extends React.Component {
             <CardHeader
               avatar={
                 <Avatar aria-label="Recipe" className={classes.avatar}>
-                  {userName[0].toUpperCase()}
+                  {author.name[0].toUpperCase()}
                 </Avatar>
               }
               action={
@@ -104,10 +104,10 @@ class SingleComment extends React.Component {
                   <EditIcon />
                 </IconButton>
               }
-              subheader={`${date} by ${userName}`}
+              subheader={`${date} by ${author.name}`}
             />
             <CardContent>
-              {isEdit ? (
+              {isEdit && currentUser.id === author.id ? (
                 <TextField
                   label="Post"
                   multiline
