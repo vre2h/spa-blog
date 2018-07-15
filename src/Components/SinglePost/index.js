@@ -5,6 +5,8 @@ import red from '@material-ui/core/colors/red';
 import EditablePost from './EditablePost';
 import NoneditablePost from './NoneditablePost';
 
+import findUserById from '../Main/findUserById';
+
 const styles = theme => ({
   card: {
     margin: '20px',
@@ -35,11 +37,6 @@ class SinglePost extends React.Component {
     this.findUserById = this.findUserById.bind(this);
   }
 
-  findUserById(id, users) {
-    const [findedUser] = users.filter(user => user.id === id);
-    return findedUser;
-  }
-
   render() {
     const {
       title,
@@ -53,7 +50,7 @@ class SinglePost extends React.Component {
       handleDeletePost,
       currentUser,
     } = this.props;
-    const user = this.findUserById(userId, users);
+    const user = findUserById(userId, users);
 
     return (
       <div>

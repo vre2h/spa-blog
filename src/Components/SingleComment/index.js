@@ -12,6 +12,8 @@ import EditIcon from '@material-ui/icons/Edit';
 import DoneIcon from '@material-ui/icons/Done';
 import DeleteIcon from '@material-ui/icons/Delete';
 
+import findUserById from '../Main/findUserById';
+
 const styles = theme => ({
   card: {
     margin: '20px',
@@ -78,15 +80,10 @@ class SingleComment extends React.Component {
     }));
   }
 
-  findUserById(id, users) {
-    const [findedUser] = users.filter(user => user.id === id);
-    return findedUser;
-  }
-
   render() {
     const { date, userId, users, classes, currentUser } = this.props;
 
-    const author = this.findUserById(userId, users);
+    const author = findUserById(userId, users);
     const { isEdit, content } = this.state;
 
     return (
