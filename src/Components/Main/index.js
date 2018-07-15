@@ -97,14 +97,16 @@ class Main extends React.Component {
   }
 
   handleDeletePost(post) {
-    const { posts } = this.state;
+    const { posts, comments } = this.state;
 
     const newPosts = posts.filter(item => post.id !== item.id);
-
+    const newComments = comments.filter(comment => post.id !== comment.postId);
     localStorage.setItem('posts', JSON.stringify(newPosts));
+    localStorage.setItem('comments', JSON.stringify(newComments));
 
     this.setState({
       posts: newPosts,
+      comments: newComments,
     });
   }
 
