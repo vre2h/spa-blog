@@ -7,7 +7,6 @@ import Posts from '../PostsPage';
 import CreatePost from '../CreatePost';
 import Authentication from '../Authentication';
 import ProtectedRoute from '../ProtectedRoute';
-import delRepeated from './DelRepeated';
 import PostPage from '../PostPage';
 
 class Main extends React.Component {
@@ -17,9 +16,10 @@ class Main extends React.Component {
     const users = JSON.parse(localStorage.getItem('users'));
     const comments = JSON.parse(localStorage.getItem('comments'));
     const posts = JSON.parse(localStorage.getItem('posts'));
+    const isOnline = users ? users.some(user => user.isOnline) : false;
 
     this.state = {
-      isLoggedIn: users ? true : false,
+      isLoggedIn: isOnline,
       isLogInFormOpen: false,
       users: users || [],
       comments: comments || [],
@@ -110,9 +110,14 @@ class Main extends React.Component {
 
   addUserAndLogIn(newUser) {
     const { users } = this.state;
-    const filtered = delRepeated(newUser, users);
+    const index = users.findIndex(
+      user => user.name === newUser.name && user.password === newUser.password
+    );
 
-    const newUsers = filtered.concat(newUser);
+    const newUsers =
+      index === -1
+        ? users.concat(newUser)
+        : [...users.slice(0, index), newUser, ...users.slice(index + 1)];
 
     localStorage.setItem('users', JSON.stringify(newUsers));
 
