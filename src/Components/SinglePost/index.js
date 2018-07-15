@@ -36,7 +36,8 @@ class SinglePost extends React.Component {
   }
 
   findUserById(id, users) {
-    return users.filter(user => user.id === id)[0];
+    const [findedUser] = users.filter(user => user.id === id);
+    return findedUser;
   }
 
   render() {
@@ -47,16 +48,15 @@ class SinglePost extends React.Component {
       id,
       userId,
       users,
-      isEditable,
+      isPostPage,
       handleEditPost,
       handleDeletePost,
     } = this.props;
-
-    const userName = this.findUserById(userId, users).name[0].toUpperCase();
+    const userName = this.findUserById(userId, users).name;
 
     return (
       <div>
-        {isEditable ? (
+        {isPostPage ? (
           <EditablePost
             title={title}
             content={content}
