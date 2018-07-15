@@ -45,7 +45,12 @@ class Authentication extends React.Component {
     this.setState({
       redirectToReferrer: true,
     });
-    addUserAndLogIn({ id: (Authentication.userId += 1), name, password });
+    addUserAndLogIn({
+      id: (Authentication.userId += 1),
+      name,
+      password,
+      isOnline: true,
+    });
   }
 
   render() {
