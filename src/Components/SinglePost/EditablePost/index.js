@@ -90,7 +90,7 @@ class EditablePost extends React.Component {
             <CardHeader
               avatar={
                 <Avatar aria-label="Recipe" className={classes.avatar}>
-                  {userName}
+                  {userName[0].toUpperCase()}
                 </Avatar>
               }
               action={
@@ -99,7 +99,7 @@ class EditablePost extends React.Component {
                 </IconButton>
               }
               title={title}
-              subheader={date}
+              subheader={`${date} by ${userName}`}
             />
             <CardContent>
               {isEdit ? (

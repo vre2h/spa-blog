@@ -44,11 +44,11 @@ class NoneditablePost extends React.Component {
             <CardHeader
               avatar={
                 <Avatar aria-label="Recipe" className={classes.avatar}>
-                  {userName}
+                  {userName[0].toUpperCase()}
                 </Avatar>
               }
               title={title}
-              subheader={date}
+              subheader={`${date} by ${userName}`}
             />
             <CardContent>
               <Typography component="p">{`${content.slice(
