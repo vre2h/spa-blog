@@ -79,13 +79,14 @@ class SingleComment extends React.Component {
   }
 
   findUserById(id, users) {
-    return users.filter(user => user.id === id)[0];
+    const [findedUser] = users.filter(user => user.id === id);
+    return findedUser;
   }
 
   render() {
     const { date, userId, users, classes } = this.props;
 
-    const userName = this.findUserById(userId, users).name[0].toUpperCase();
+    const userName = this.findUserById(userId, users).name;
     const { isEdit, content } = this.state;
 
     return (
@@ -95,7 +96,7 @@ class SingleComment extends React.Component {
             <CardHeader
               avatar={
                 <Avatar aria-label="Recipe" className={classes.avatar}>
-                  {userName}
+                  {userName[0].toUpperCase()}
                 </Avatar>
               }
               action={
@@ -103,7 +104,7 @@ class SingleComment extends React.Component {
                   <EditIcon />
                 </IconButton>
               }
-              subheader={date}
+              subheader={`${date} by ${userName}`}
             />
             <CardContent>
               {isEdit ? (
