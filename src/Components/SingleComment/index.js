@@ -130,7 +130,12 @@ class SingleComment extends React.Component {
             >
               <DoneIcon />
             </IconButton>
-            <IconButton onClick={this.handleDelete} aria-label="Delete">
+            <IconButton
+              onClick={
+                currentUser.id === author.id ? this.handleDelete : () => {}
+              }
+              aria-label="Delete"
+            >
               <DeleteIcon />
             </IconButton>
           </Grid>

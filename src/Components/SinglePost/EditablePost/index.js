@@ -82,7 +82,6 @@ class EditablePost extends React.Component {
   render() {
     const { classes, title, date, author, currentUser } = this.props;
     const { isEdit, content } = this.state;
-
     return (
       <div>
         <h1>Post</h1>
@@ -135,7 +134,9 @@ class EditablePost extends React.Component {
               variant="fab"
               aria-label="delete"
               className={classes['delete-button']}
-              onClick={this.handleDelete}
+              onClick={
+                currentUser.id === author.id ? this.handleDelete : () => {}
+              }
             >
               <DeleteIcon />
             </Button>
