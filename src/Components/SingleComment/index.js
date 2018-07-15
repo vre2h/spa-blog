@@ -49,7 +49,6 @@ class SingleComment extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.sendNewComment = this.sendNewComment.bind(this);
     this.handleDelete = this.handleDelete.bind(this);
-    this.findUserById = this.findUserById.bind(this);
   }
 
   handleChange(event) {
