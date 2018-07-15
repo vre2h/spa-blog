@@ -140,8 +140,18 @@ class Main extends React.Component {
   }
 
   logOut() {
+    const { users } = this.state;
+
+    const newUsers = users.map(user => ({
+      ...user,
+      isOnline: false,
+    }));
+
+    localStorage.setItem('users', JSON.stringify(newUsers));
+
     this.setState(({ isLoggedIn }) => ({
       isLoggedIn: false,
+      users: newUsers,
     }));
   }
 
@@ -159,7 +169,8 @@ class Main extends React.Component {
 
   render() {
     const { isLoggedIn, isLogInFormOpen, posts, comments, users } = this.state;
-    const currentUser = users[users.length - 1];
+    const [currentUser] = users.filter(user => user.isOnline);
+
     return (
       <Router>
         <ScrollToTop>
