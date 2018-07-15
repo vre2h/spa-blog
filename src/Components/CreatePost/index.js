@@ -9,6 +9,8 @@ import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
 import DoneIcon from '@material-ui/icons/Done';
 
+import getUniqueId from '../Main/getUniqueId';
+
 const styles = {
   container: {
     margin: '20px',
@@ -33,7 +35,7 @@ class CreatePost extends React.Component {
     this.handleContent = this.handleContent.bind(this);
   }
 
-  static postId = 0;
+  static postId = getUniqueId('posts') + 1;
 
   handleTitle(event) {
     this.setState({

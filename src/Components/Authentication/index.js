@@ -1,7 +1,9 @@
 import React from 'react';
+import { Redirect } from 'react-router-dom';
+
 import LogIn from './LogIn';
 import LogOut from './LogOut';
-import { Redirect } from 'react-router-dom';
+import getUniqueId from '../Main/getUniqueId';
 
 class Authentication extends React.Component {
   constructor(props) {
@@ -18,7 +20,7 @@ class Authentication extends React.Component {
     this.handleLogIn = this.handleLogIn.bind(this);
   }
 
-  static userId = 0;
+  static userId = getUniqueId('users');
 
   handlePswd(event) {
     this.setState({

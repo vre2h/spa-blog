@@ -6,6 +6,8 @@ import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
 import DoneIcon from '@material-ui/icons/Done';
 
+import getUniqueId from '../Main/getUniqueId';
+
 const styles = {
   'comment-box': {
     padding: '20px',
@@ -29,7 +31,7 @@ class CreateComment extends React.Component {
     this.handleContent = this.handleContent.bind(this);
   }
 
-  static commentId = 0;
+  static commentId = getUniqueId('comments');
 
   handleContent(event) {
     this.setState({
