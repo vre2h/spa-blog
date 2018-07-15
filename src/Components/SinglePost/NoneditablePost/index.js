@@ -35,7 +35,7 @@ const styles = theme => ({
 
 class NoneditablePost extends React.Component {
   render() {
-    const { classes, title, content, date, userName, id } = this.props;
+    const { classes, title, content, date, author, id } = this.props;
 
     return (
       <div>
@@ -44,11 +44,11 @@ class NoneditablePost extends React.Component {
             <CardHeader
               avatar={
                 <Avatar aria-label="Recipe" className={classes.avatar}>
-                  {userName[0].toUpperCase()}
+                  {author.name[0].toUpperCase()}
                 </Avatar>
               }
               title={title}
-              subheader={`${date} by ${userName}`}
+              subheader={`${date} by ${author.name}`}
             />
             <CardContent>
               <Typography component="p">{`${content.slice(

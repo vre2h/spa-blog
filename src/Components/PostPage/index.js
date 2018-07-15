@@ -45,6 +45,7 @@ class PostPage extends React.Component {
             isPostPage={true}
             handleEditPost={handleEditPost}
             handleDeletePost={handleDeletePost}
+            currentUser={currentUser}
           />
           <h2>Comments</h2>
           <CreateComment
@@ -57,6 +58,7 @@ class PostPage extends React.Component {
             users={users}
             handleEditComment={handleEditComment}
             handleDeleteComment={handleDeleteComment}
+            currentUser={currentUser}
           />
         </Grid>
       </Grid>

@@ -51,8 +51,9 @@ class SinglePost extends React.Component {
       isPostPage,
       handleEditPost,
       handleDeletePost,
+      currentUser,
     } = this.props;
-    const userName = this.findUserById(userId, users).name;
+    const user = this.findUserById(userId, users);
 
     return (
       <div>
@@ -62,7 +63,8 @@ class SinglePost extends React.Component {
             content={content}
             date={date}
             id={id}
-            userName={userName}
+            author={user}
+            currentUser={currentUser}
             handleEditPost={handleEditPost.bind(this, {
               title,
               content,
@@ -84,7 +86,7 @@ class SinglePost extends React.Component {
             content={content}
             date={date}
             id={id}
-            userName={userName}
+            author={user}
           />
         )}
       </div>

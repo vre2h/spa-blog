@@ -80,8 +80,9 @@ class EditablePost extends React.Component {
   }
 
   render() {
-    const { classes, title, date, userName } = this.props;
+    const { classes, title, date, author, currentUser } = this.props;
     const { isEdit, content } = this.state;
+
     return (
       <div>
         <h1>Post</h1>
@@ -90,7 +91,7 @@ class EditablePost extends React.Component {
             <CardHeader
               avatar={
                 <Avatar aria-label="Recipe" className={classes.avatar}>
-                  {userName[0].toUpperCase()}
+                  {author.name[0].toUpperCase()}
                 </Avatar>
               }
               action={
@@ -99,10 +100,10 @@ class EditablePost extends React.Component {
                 </IconButton>
               }
               title={title}
-              subheader={`${date} by ${userName}`}
+              subheader={`${date} by ${author.name}`}
             />
             <CardContent>
-              {isEdit ? (
+              {isEdit && currentUser.id === author.id ? (
                 <TextField
                   label="Post"
                   multiline
