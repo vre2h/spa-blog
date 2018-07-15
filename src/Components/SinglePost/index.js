@@ -30,66 +30,58 @@ const styles = theme => ({
   },
 });
 
-class SinglePost extends React.Component {
-  constructor(props) {
-    super(props);
+const SinglePost = props => {
+  const {
+    title,
+    content,
+    date,
+    id,
+    userId,
+    users,
+    isPostPage,
+    handleEditPost,
+    handleDeletePost,
+    currentUser,
+  } = props;
+  const user = findUserById(userId, users);
 
-    this.findUserById = this.findUserById.bind(this);
-  }
-
-  render() {
-    const {
-      title,
-      content,
-      date,
-      id,
-      userId,
-      users,
-      isPostPage,
-      handleEditPost,
-      handleDeletePost,
-      currentUser,
-    } = this.props;
-    const user = findUserById(userId, users);
-
-    return (
-      <div>
-        {isPostPage ? (
-          <EditablePost
-            title={title}
-            content={content}
-            date={date}
-            id={id}
-            author={user}
-            currentUser={currentUser}
-            handleEditPost={handleEditPost.bind(this, {
-              title,
-              content,
-              id,
-              date,
-              userId,
-            })}
-            handleDeletePost={handleDeletePost.bind(this, {
-              title,
-              content,
-              id,
-              date,
-              userId,
-            })}
-          />
-        ) : (
-          <NoneditablePost
-            title={title}
-            content={content}
-            date={date}
-            id={id}
-            author={user}
-          />
-        )}
-      </div>
-    );
-  }
-}
+  return (
+    <div>
+      {isPostPage ? (
+        <EditablePost
+          title={title}
+          content={content}
+          date={date}
+          id={id}
+          author={user}
+          currentUser={currentUser}
+          handleEditPost={handleEditPost.bind(this, {
+            title,
+            content,
+            id,
+            date,
+            userId,
+          })}
+          handleDeletePost={handleDeletePost.bind(this, {
+            title,
+            content,
+            id,
+            date,
+            userId,
+          })}
+        />
+      ) : (
+        <NoneditablePost
+          title={title}
+          content={content}
+          date={date}
+          id={id}
+          author={user}
+        />
+      )}
+    </div>
+  );
+};
 
 SinglePost.propTypes = {
   classes: PropTypes.object.isRequired,
