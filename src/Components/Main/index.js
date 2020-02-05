@@ -207,6 +207,7 @@ class Main extends React.Component {
                   isLogInFormOpen={isLogInFormOpen}
                   logInFormClose={this.logInFormClose}
                   addUser={this.addUser}
+                  usersList={this.state.users}
                 />
               )}
             />
